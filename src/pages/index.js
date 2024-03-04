@@ -61,6 +61,11 @@ export default function Home() {
     saveAs(audioUrl, 'speech.mp3'); // This will save the file as "speech.mp3"
   };
 
+  const handleInputChange = (e) => {
+    if (e.target.value.length <= 4096) {
+      setInputText(e.target.value);
+    }
+  };
 
   // Assuming `openai.audio.speech.create` returns a stream or binary data
   const handleSubmit = async (e) => {
@@ -191,10 +196,12 @@ export default function Home() {
                   value={inputText}
                   onChange={handleInputChange}
                   resize="vertical"
-                 
+                  maxLength={4096}
                   borderColor="black"
                 />
-            
+                 <Box textAlign="right" fontSize="sm">
+                  {inputText.length} / 4096
+                </Box>
               </FormControl>
 
               <HStack width="full" justifyContent="space-between">
