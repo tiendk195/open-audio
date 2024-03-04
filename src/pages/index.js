@@ -121,11 +121,7 @@ export default function Home() {
 
 
 
-  const handleInputChange = (e) => {
-    if (e.target.value.length <= 4096) {
-      setInputText(e.target.value);
-    }
-  };
+
 
   return (
     <Container bg={'gray.100'} maxW="container">
@@ -195,12 +191,10 @@ export default function Home() {
                   value={inputText}
                   onChange={handleInputChange}
                   resize="vertical"
-                  maxLength={4096}
+                 
                   borderColor="black"
                 />
-                <Box textAlign="right" fontSize="sm">
-                  {inputText.length} / 4096
-                </Box>
+            
               </FormControl>
 
               <HStack width="full" justifyContent="space-between">
@@ -270,6 +264,13 @@ export default function Home() {
               >
                 Create Speech
               </Button>
+              <Text fontSize="sm" fontStyle="italic" textAlign="center" mt={2}>
+              Lưu ý: Bạn cần phải bổ sung vào OpenAI API Key, nếu chưa có, vui lòng truy cập{" "}
+              <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">
+              tại đây
+              </a>
+              </Text>
+
 
               {isSubmitting && (
                 <Spinner
@@ -283,7 +284,7 @@ export default function Home() {
               {audioUrl && (
                 <>
                   <audio controls src={audioUrl}>
-                    Your browser does not support the audio element.
+                    Trình duyệt của bạn không hỗ trợ truy xuất file này!
                   </audio>
                   <Button onClick={handleDownload}>Download MP3</Button>
                 </>
